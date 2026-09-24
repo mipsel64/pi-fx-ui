@@ -1,6 +1,6 @@
 {
   "name": "@mipsel64/pi-fx-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Make Pi look like Vercel fx: monochrome themes, ┃ composer, ● tool rows, one-line footer",
   "type": "module",
   "license": "MIT",
