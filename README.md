@@ -59,12 +59,21 @@ For the cleanest start, hide Pi's startup resource listing in `~/.pi/agent/setti
 
 ## Themes
 
-If your theme is Pi's built-in `dark` or `light`, the extension switches to the matching fx theme for the session. It does not change your saved setting, and custom themes are left alone.
+If your theme is Pi's built-in `dark` or `light`, the extension switches to `fx-dark` or `fx-light` and saves that as your theme. Custom themes are left alone.
 
-To pin the fx themes and follow your terminal's light or dark mode:
+## Avoid the startup flash
+
+Pi draws its first frame before extensions finish starting, so it can briefly show its default look. Two settings prevent this:
+
+- **Pin a fixed fx theme**: `"theme": "fx-dark"` (or `"fx-light"`). The extension saves this after the first launch. Avoid the automatic `"fx-light/fx-dark"` form: Pi spends about 100 ms asking the terminal for its background first, and the default layout shows during that time.
+- **Load pi-fx-ui first**: put it at the start of `packages`, so its layout is in place before slower extensions start.
 
 ```json
-{ "theme": "fx-light/fx-dark" }
+{
+  "theme": "fx-dark",
+  "quietStartup": true,
+  "packages": ["npm:@mipsel64/pi-fx-ui", "..."]
+}
 ```
 
 ## Notes
