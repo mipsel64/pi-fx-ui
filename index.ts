@@ -267,9 +267,8 @@ export default function (pi: ExtensionAPI) {
 		ui = ctx.ui;
 		const current = ctx.ui.theme.name;
 		if (current === "dark" || current === "light") {
-			// Theme instance (not name) so the user's saved theme setting is left untouched.
-			const fx = ctx.ui.getTheme(current === "light" ? "fx-light" : "fx-dark");
-			if (fx) ctx.ui.setTheme(fx);
+			// Saved by name: Pi paints its first frame with the saved theme before extensions run.
+			ctx.ui.setTheme(current === "light" ? "fx-light" : "fx-dark");
 		}
 		patchUserMessages(() => ctx.ui.theme);
 		ctx.ui.setWorkingIndicator({ frames: ["•"] });
